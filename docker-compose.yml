@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  thaid_callback:
+    build: .
+    container_name: thaid-callback
+    volumes:
+      - ./api/src/:/home/api/src/
+      - ./api/app/:/home/api/app/
+      - ./api/views/:/home/api/views/ 
+      - ./api/pm2.json:/home/api/pm2.json:rw
+    restart: always
+    environment:
+      - RADIUS_TYPE=${RADIUS_TYPE}
+      - RADIUS_HOST=${RADIUS_HOST}
+      - RADIUS_USERNAME=${RADIUS_USERNAME}
+      - RADIUS_PASSWORD=${RADIUS_PASSWORD}
+      - RADIUS_DBNAME=${RADIUS_DBNAME}
+      - RADIUS_CHARSET=${RADIUS_CHARSET}
+      - RADIUS_PORT=${RADIUS_PORT}
+      - RADIUS_TIMEZONE=${RADIUS_TIMEZONE}
+      - FORTIGATE_URL=${FORTIGATE_URL}
+      - THAID_CLIENT_ID=${THAID_CLIENT_ID}
+      - THAID_CLIENT_SECRET=${THAID_CLIENT_SECRET}
+    ports:
+      - "93:3000"
+    networks:
+      - thaid_network 
+
+networks:
+  thaid_network:
+    driver: bridge
+

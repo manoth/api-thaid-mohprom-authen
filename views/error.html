@@ -1,0 +1,17 @@
+<%- include('./layout.html') -%>
+
+    <h1>
+        <%= message %>
+    </h1>
+    <h2>
+        <%= error.status %>
+    </h2>
+    <pre><%= error.stack %></pre>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            location.href = `http://cpho.moph.go.th`;
+        });
+    </script>
+
+    <%- include('./footer.html') -%>

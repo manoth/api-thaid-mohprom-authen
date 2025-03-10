@@ -1,0 +1,23 @@
+<%- include('./layout.html') -%>
+
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+            location.href = `http://10.10.10.15/login-internet/thaid-success.html?fortigateUrl=<%= fortigateUrl %>&state=<%= state %>&username=<%= username %>&password=<%= password %>`;
+        });
+    </script> -->
+
+    <script src="https://smartcpho.moph.go.th/assets/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            const url = `<%= fortigateUrl %>/fgtauth?<%= state %>`;
+            const form = $(`<form method="post" action="${url}" novalidate>` +
+                `<input type="hidden" name="magic" value="<%= state %>">` +
+                `<input type="hidden" name="username" value="<%= username %>">` +
+                `<input type="hidden" name="password" value="<%= password %>">` +
+                '</form>');
+            $('body').append(form);
+            form.submit();
+        });
+    </script>
+
+    <%- include('./footer.html') -%>
